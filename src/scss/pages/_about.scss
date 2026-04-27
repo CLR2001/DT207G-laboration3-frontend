@@ -1,0 +1,19 @@
+@use '../core/' as *;
+
+.about-main {
+  display: grid;
+  gap: 2rem;
+  place-items: center;
+  height: fit-content;
+  line-height: 1.7;
+}
+
+.about-section {
+  max-width: $p-width;
+  h2 {
+    margin-bottom: 1ch;
+  }
+  p ~ p {
+    margin-top: 1.5ch;
+  }
+}

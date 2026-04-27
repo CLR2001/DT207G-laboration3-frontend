@@ -1,0 +1,60 @@
+@use '../core/' as *;
+
+.index-main {
+  h1 {
+    text-align: center;
+  }
+}
+
+.job-section {
+  display: grid;
+  gap: 2rem;
+  counter-reset: job-counter;
+  width: min(100%, $p-width);
+  background-color: $color-primary;
+  margin: 3rem auto;
+  padding: min(4vw, 3rem);
+  border-radius: 1rem;
+}
+
+.job-container {
+  position: relative;
+  display: grid;
+  gap: 1ch;
+  padding: 1rem;
+  &::before {
+    counter-increment: job-counter;
+    content: "#" counter(job-counter);
+    position: absolute;
+    top: 1ch;
+    right: 2ch;
+    filter: brightness(0.5);
+  }
+}
+
+.job-container:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: grey;
+  opacity: 0.3;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  margin-top: 1ch;
+}
+
+.remove-button {
+  color: red;
+  text-decoration: underline;
+  &:hover {
+    transform: scale(1.03);
+  }
+}
