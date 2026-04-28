@@ -37,6 +37,7 @@ export async function addJobs() {
       return;
     }
 
+    if (data.description === "") {data.description = 'Ingen beskrivning tillgänglig'}
     saveJob(data);
 
   });
