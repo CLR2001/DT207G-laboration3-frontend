@@ -13,8 +13,7 @@ export async function renderJobs() {
     const spinner = createDomElement('span');
     spinner.classList.add('spinner');
     container?.append(spinner);
-    const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-    await sleep(5000);
+    
     const response = await fetch('https://lab3.api.clr-server.com/employments');
     
     if (!response.ok) {
