@@ -1,9 +1,9 @@
-# ◈ Laboration 2 - Webbplats
-Detta repository innehåller webbplatsen för laboration 2 i kursen DT207G.
+# ◈ Laboration 3 - Webbplats
+Detta repository innehåller webbplatsen för laboration 3 i kursen DT207G.
 
 
 ## ✦ Projektbeskrivning
-Denna webbplats är till för att kunna visa och spara jobberfarenheter. All data sparas till en extern SQLite databas.
+Denna webbplats är till för att kunna visa och spara jobberfarenheter. All data sparas till en extern NoSQL MongoDB databas.
 
 ## ⚙ Funktioner
 * **Extern data:**  Skriver ut data från en extern databas till DOM:en.
@@ -13,7 +13,7 @@ Denna webbplats är till för att kunna visa och spara jobberfarenheter. All dat
 
 1. **Klona projektet:**
    ```bash
-   git clone https://github.com/CLR2001/DT207G-laboration2-frontend.git
+   git clone https://github.com/CLR2001/DT207G-laboration3-frontend.git
    ```
 2. **Installera beroenden:**
    ```bash
@@ -30,7 +30,7 @@ Denna webbplats är till för att kunna visa och spara jobberfarenheter. All dat
    ```
 
 ## ⬀ Länk till webbplats
-[Webbplats](https://dt207g-laboration2.clr-server.com/)
+[Webbplats](https://dt207g-laboration3.clr-server.com/)
 
 ## ⬢ Utvecklare
 **Ludvig Rosenqvist** — *Student*
