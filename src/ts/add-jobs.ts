@@ -55,7 +55,7 @@ export async function addJobs() {
  */
 async function saveJob(data: Employment): Promise<void> {
   try {
-    const response = await fetch('https://api.clr-server.com/employments/', {
+    const response = await fetch('https://lab3.api.clr-server.com/employments/', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'

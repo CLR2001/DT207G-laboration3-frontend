@@ -3,14 +3,14 @@ import type { Employment } from "./interfaces/employment";
 
 /**
  * @function renderJobs
- * @description Creates HTMLElements for each row fetched from database and renders to DOM.
+ * @description Creates HTMLElements for each document fetched from database and renders to DOM.
  */
 export async function renderJobs() {
   const container = document.querySelector<HTMLElement>('.job-section');
   container?.replaceChildren();
 
   try {
-  const response = await fetch('https://api.clr-server.com/employments');
+  const response = await fetch('https://lab3.api.clr-server.com/employments');
   
   if (!response.ok) {
     const errorData = await response.json();
@@ -29,14 +29,22 @@ export async function renderJobs() {
   }
 
   data.forEach((job: Employment) => {
+    console.log(job._id);
+    
     const div = createDomElement('div');
     div.classList.add('job-container');
     const name = createDomElement('h2', job.company_name);
     const title = createDomElement('p', `Roll: ${job.job_title}`);
     const location = createDomElement('p', `Plats: ${job.location}`);
+
     const dateDiv = createDomElement('div');
-    dateDiv. append(createDomElement('p', `Period: ${job.start_date} - ${job.end_date || 'tillsvidare'}`))
     dateDiv.classList.add('date-container');
+    const startDate = new Date(job.start_date).toISOString().split('T')[0];
+    const endDate = job.end_date === null
+        ? 'tillsvidare'
+        : new Date(job.end_date as string).toISOString().split('T')[0];
+    dateDiv. append(createDomElement('p', `Period: ${startDate} - ${endDate}`));
+    
     const description = createDomElement('p', job.description);
 
     const buttonContainer = createDomElement('div');
@@ -44,10 +52,14 @@ export async function renderJobs() {
     const removeButton = createDomElement('button', 'Radera');
     removeButton.classList.add('remove-button');
 
-    removeButton.addEventListener('click', () => {
+    removeButton.addEventListener('click', async () => {
       const userConfirm = confirm('Vill du verkligen radera detta jobb från databasen?');
       if(userConfirm) {
-        deleteJob(job.id as number, div);
+        await deleteJob(job._id as string, div);
+        
+        if (container?.children.length === 0) {
+          container?.append(createDomElement('p', 'Du har inga sparade jobb'));
+        }
       }
     });
 
@@ -83,9 +95,9 @@ function createDomElement(tag: string, text: string = ''): HTMLElement {
  * @param id ID to delete from database.
  * @param element HTMLElement to remove from DOM.
  */
-async function deleteJob(id: number, element: HTMLElement): Promise<void> {
+async function deleteJob(id: string, element: HTMLElement): Promise<void> {
   try {
-    const response = await fetch (`https://api.clr-server.com/employments/${id}`, {
+    const response = await fetch (`https://lab3.api.clr-server.com/employments/${id}`, {
       method: 'DELETE'
     });
     if (!response.ok) {

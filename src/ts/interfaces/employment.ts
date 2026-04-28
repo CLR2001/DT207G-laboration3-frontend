@@ -1,5 +1,5 @@
 export interface Employment {
-  id?: number;
+  _id?: string;
   company_name: string;
   job_title: string;
   location: string;
